@@ -1,3 +1,4 @@
+import { readFile, writeFile } from 'node:fs/promises';
 function processValue(val: string): string | number {
     if (val === "") return "";
     let num = Number(val);
@@ -32,7 +33,6 @@ function csvToJSON(input: string[], delimiter: string){
             }
             if (keyIndex >= keys.length && input[i] != null){
                 throw new Error("Error");
-                
             }
         }
         rowobject[keys[keyIndex]] = processValue(currentWord)
@@ -41,6 +41,31 @@ function csvToJSON(input: string[], delimiter: string){
     return answer;
 }
 
-const result = csvToJSON(["p1;p2;p3;p4", "1;A;0;1;b;c;0", "2;B;v;d;1"], ";");
-console.table(result);
+async function  formatCSVFileToJSONFile(input: string, output: string, delimiter: string): Promise<void> {
+    try{
+        const fileContent = await readFile(input, 'utf-8');
+         let lines: string[] = [];
+         let currentLineIndex = 0;
+         lines[0] = "";
+
+        for(let i = 0; i < fileContent.length; i++){
+            if(fileContent[i] === '\n'){
+                currentLineIndex ++;
+                lines[currentLineIndex] = "";
+            }else if(fileContent[i] !== '\n'){
+                lines[currentLineIndex] += fileContent[i];
+            }
+        }
+
+        if(lines[lines.length - 1] === ""){
+            lines.pop()
+        }
+
+        const jsonResult = csvToJSON(lines, delimiter);
+
+        await writeFile(output, JSON.stringify(jsonResult, null, 2));
+    } catch (error){
+        throw new Error("Error");
+    }
+}
 
