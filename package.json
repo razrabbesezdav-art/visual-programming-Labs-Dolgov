@@ -1,6 +1,9 @@
 {
+  "name": "your-project-name",
+  "scripts": {
+    "test": "vitest"
+  },
   "devDependencies": {
-    "@types/node": "^25.4.0",
-    "vitest": "^4.0.18"
+    "vitest": "^1.0.0"
   }
 }
