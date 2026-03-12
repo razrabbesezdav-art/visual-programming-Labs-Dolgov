@@ -32,4 +32,11 @@ describe("Тесты функции formatCSVFileToJSONFile", () => {
 
         expect(writeFile).toHaveBeenCalledWith('output.json', expectedJson);
     });
+
+    it("Вызов функции с некорректными данными", async () => {
+        vi.mocked(readFile).mockRejectedValue(new Error('File not found'));
+        await expect(formatCSVFileToJSONFile('bad.csv', 'out.json', ';'))
+        .rejects
+        .toThrow('Error');
+    });
 });
