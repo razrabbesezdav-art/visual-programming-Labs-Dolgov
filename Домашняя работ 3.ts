@@ -43,3 +43,4 @@ function csvToJSON(input: string[], delimiter: string){
 
 const result = csvToJSON(["p1;p2;p3;p4", "1;A;0;1;b;c;0", "2;B;v;d;1"], ";");
 console.table(result);
+
