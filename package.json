@@ -1,0 +1,9 @@
+{
+  "name": "your-project-name",
+  "scripts": {
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^1.0.0"
+  }
+}
