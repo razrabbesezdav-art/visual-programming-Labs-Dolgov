@@ -1,5 +1,5 @@
 import { readFile, writeFile } from 'node:fs/promises';
-export function processValue(val: string): string | number {
+function processValue(val: string): string | number {
     if (val === "") return "";
     let num = Number(val);
     return isNaN(num) ? val : num;
