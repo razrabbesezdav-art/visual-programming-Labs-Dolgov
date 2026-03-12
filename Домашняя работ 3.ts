@@ -30,6 +30,10 @@ function csvToJSON(input: string[], delimiter: string){
             }else{
                 currentWord += input[i][j];
             }
+            if (keyIndex >= keys.length && input[i] != null){
+                throw new Error("Error");
+                
+            }
         }
         rowobject[keys[keyIndex]] = processValue(currentWord)
         answer.push(rowobject);
@@ -37,5 +41,5 @@ function csvToJSON(input: string[], delimiter: string){
     return answer;
 }
 
-const result = csvToJSON(["p1;p2;p3;p4", "1;A;b;c", "2;B;v;d"], ";");
+const result = csvToJSON(["p1;p2;p3;p4", "1;A;0;1;b;c;0", "2;B;v;d;1"], ";");
 console.table(result);
