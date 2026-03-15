@@ -4,7 +4,7 @@ type Where<T> = <K extends keyof T>(key: K, value: T[K]) => Transform<T>;
 
 type Sort<T> = <K extends keyof T>(key: K) => Transform<T>;
 
-type Group<T, K extends keyof T> = {
+export type Group<T, K extends keyof T> = {
   key: T[K];
   items: T[];
 };
@@ -17,19 +17,19 @@ type Having<T> = <K extends keyof T>(
   predicate: (group: Group<T, K>) => boolean
 ) => GroupTransform<T, K>;
 
-type ID_card ={
+export type ID_card ={
     id: number;
     name: string;
     address: string;
     age: number;
     phoneNumber: string;
 }
-const where: Where<ID_card> =
+export const where: Where<ID_card> =
     (key, value) =>
     (data) =>
         data.filter((item) => item[key] === value);
 
-const sort: Sort<ID_card> =
+export const sort: Sort<ID_card> =
     (key) =>
     (data) =>
         [...data].sort((a, b) => {
@@ -40,7 +40,7 @@ const sort: Sort<ID_card> =
             return 0;
         });
 
-const groupBy: GroupBy<ID_card> =
+export const groupBy: GroupBy<ID_card> =
     (key) =>
     (data) =>
         Object.values(
@@ -51,11 +51,12 @@ const groupBy: GroupBy<ID_card> =
             }, {} as Record<string, Group<ID_card, typeof key>>),
         );
 
-const having: Having<ID_card> =
- (predicate) =>
- (groups) =>
- groups.filter(predicate);
+export const having: Having<ID_card> =
+    (predicate) =>
+    (groups) =>
+    groups.filter(predicate);
 
-function query<T>(...steps: Function[]){
+export function query<T>(...steps: Function[]){
     return (input: T[]): any => { return steps.reduce((data, step) => step(data), input); };
 }
+
