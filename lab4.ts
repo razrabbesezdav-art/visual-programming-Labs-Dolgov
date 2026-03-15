@@ -56,3 +56,6 @@ const having: Having<ID_card> =
  (groups) =>
  groups.filter(predicate);
 
+function query<T>(...steps: Function[]){
+    return (input: T[]): any => { return steps.reduce((data, step) => step(data), input); };
+}
