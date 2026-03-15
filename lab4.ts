@@ -8,3 +8,5 @@ type Group<T, K extends keyof T> = {
   key: T[K];
   items: T[];
 };
+
+type GroupTransform<T, K extends keyof T> = (groups: Group<T, K>[]) => Group<T, K>[];
