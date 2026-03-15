@@ -10,3 +10,7 @@ type Group<T, K extends keyof T> = {
 };
 
 type GroupTransform<T, K extends keyof T> = (groups: Group<T, K>[]) => Group<T, K>[];
+
+type Having<T> = <K extends keyof T>(
+  predicate: (group: Group<T, K>) => boolean
+) => GroupTransform<T, K>;
