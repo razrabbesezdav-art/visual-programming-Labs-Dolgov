@@ -24,6 +24,13 @@ export type ID_card ={
     age: number;
     phoneNumber: string;
 }
+
+export type queryStep = "start"| "where" | "groupBy" | "having" | "sort";
+
+export interface QueryState <Step extends queryStep = "start">{
+    readonly step:  Step;
+    readonly steps: ReadonlyArray<(data: any) => any>;
+}
 export const where: Where<ID_card> =
     (key, value) =>
     (data) =>
