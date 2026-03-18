@@ -31,6 +31,19 @@ export interface QueryState <Step extends queryStep = "start">{
     readonly step:  Step;
     readonly steps: ReadonlyArray<(data: any) => any>;
 }
+
+export type placeWhere<currentStep extends queryStep> =
+    currentStep extends 'start' ? 'where' : never;
+
+export type placeGroupBy<currentStep extends queryStep> =
+    currentStep extends 'where' ? 'groupBy' : never;
+
+export type placeHaving<currentStep extends queryStep> =
+    currentStep extends 'groupBy' ? 'having' : never;
+
+export type placeSort<currentStep extends queryStep> =
+    currentStep extends 'having' | 'where' | 'start'  ? 'sort': never;
+    
 export const where: Where<ID_card> =
     (key, value) =>
     (data) =>
