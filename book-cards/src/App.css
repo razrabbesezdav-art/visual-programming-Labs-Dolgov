@@ -1,0 +1,32 @@
+.app {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.app h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.books-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.loading {
+  text-align: center;
+  font-size: 18px;
+  padding: 50px;
+  color: #666;
+}
+
+.error {
+  text-align: center;
+  font-size: 18px;
+  padding: 50px;
+  color: red;
+}
