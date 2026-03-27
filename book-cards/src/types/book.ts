@@ -4,6 +4,7 @@ export interface Book {
   isbn: string;
   pageCount: number;
   authors: string[];
+  coverId?: number;
 }
 
 export interface GoogleBooksResponse {

@@ -3,62 +3,61 @@ import BookCardWithCover from './components/BookCardWithCover';
 import { Book } from './types/book';
 import './App.css';
 
-const GOOGLE_BOOKS_API = 'https://www.googleapis.com/books/v1/volumes?q=subject:fiction&maxResults=20';
+interface OpenLibraryBook {
+  key: string;
+  title: string;
+  author_name?: string[];
+  first_publish_year?: number;
+  isbn?: string[];
+  cover_i?: number;
+}
 
-interface GoogleBookItem {
-  id: string;
-  volumeInfo: {
-    title: string;
-    authors?: string[];
-    pageCount?: number;
-    industryIdentifiers?: Array<{
-      type: string;
-      identifier: string;
-    }>;
-  };
+const OPEN_LIBRARY_API = 'https://openlibrary.org/search.json?q=subject:fiction&limit=12';
+
+interface ExtendedBook extends Book {
+  coverId?: number;
 }
 
 const App: React.FC = () => {
-  const [books, setBooks] = useState<Book[]>([]);
+  const [books, setBooks] = useState<ExtendedBook[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log('Загрузка книг из Google Books API...');
-    
-    fetch(GOOGLE_BOOKS_API)
-      .then(response => {
+    const fetchBooks = async () => {
+      try {
+        console.log('Загрузка книг из Open Library API...');
+        
+        const response = await fetch(OPEN_LIBRARY_API);
+        
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        return response.json();
-      })
-      .then(data => {
+        
+        const data = await response.json();
         console.log('Получены данные:', data);
         
-        const formattedBooks: Book[] = (data.items || []).slice(0, 12).map((item: GoogleBookItem, index: number) => {
-          const isbnObj = item.volumeInfo.industryIdentifiers?.find(
-            id => id.type === 'ISBN_13' || id.type === 'ISBN_10'
-          );
-          
-          return {
-            id: index + 1,
-            title: item.volumeInfo.title || 'Unknown Title',
-            isbn: isbnObj?.identifier || '9785170918683',
-            pageCount: item.volumeInfo.pageCount || 200,
-            authors: item.volumeInfo.authors || ['Unknown Author']
-          };
-        });
+        const formattedBooks: ExtendedBook[] = (data.docs || []).map((doc: OpenLibraryBook, index: number) => ({
+          id: index + 1,
+          title: doc.title || 'Unknown Title',
+          isbn: doc.isbn?.[0] || `978${Math.floor(Math.random() * 10000000000)}`,
+          pageCount: 200,
+          authors: doc.author_name || ['Unknown Author'],
+          coverId: doc.cover_i 
+        }));
         
         setBooks(formattedBooks);
         setLoading(false);
         console.log('Загружено книг:', formattedBooks.length);
-      })
-      .catch(err => {
+        console.log('Книги с coverId:', formattedBooks.filter(b => b.coverId).length);
+      } catch (err) {
         console.error('Ошибка загрузки книг:', err);
-        setError(err.message);
+        setError(err instanceof Error ? err.message : 'Ошибка загрузки');
         setLoading(false);
-      });
+      }
+    };
+
+    fetchBooks();
   }, []);
 
   if (loading) return <div className="loading">Загрузка книг...</div>;
@@ -69,7 +68,11 @@ const App: React.FC = () => {
       <h1>Каталог книг</h1>
       <div className="books-grid">
         {books.map(book => (
-          <BookCardWithCover key={book.id} book={book} />
+          <BookCardWithCover 
+            key={book.id} 
+            book={book}
+            coverId={book.coverId}
+          />
         ))}
       </div>
     </div>
