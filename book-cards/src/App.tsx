@@ -1,40 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import BookCardWithCover from './components/BookCardWithCover';
 import { Book } from './types/book';
+import booksData from './data/books.json';
 import './App.css';
-
-const BOOKS_API = 'https://fakeapi.extendsclass.com/books.JSON';
 
 const App: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(BOOKS_API)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data: Book[]) => {
-        setBooks(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('Error fetching books:', err);
-        setError(err.message);
-        setLoading(false);
-      });
+    console.log('Загрузка локальных данных о книгах...');
+    setTimeout(() => {
+      setBooks(booksData);
+      setLoading(false);
+      console.log('Загружено книг:', booksData.length);
+    }, 500);
   }, []);
 
-  if (loading) return <div className="loading">Loading books...</div>;
-  if (error) return <div className="error">Error: {error}</div>;
+  if (loading) return <div className="loading">Загрузка книг...</div>;
 
   return (
     <div className="app">
-      <h1>Book Catalog</h1>
+      <h1>Каталог книг</h1>
       <div className="books-grid">
         {books.map(book => (
           <BookCardWithCover key={book.id} book={book} />
