@@ -1,4 +1,4 @@
-import { WeatherResponse } from "../types/weather";
+import type { WeatherResponse } from "../types/weather";
 
 export const mockWeatherData: WeatherResponse = {
   daily: [

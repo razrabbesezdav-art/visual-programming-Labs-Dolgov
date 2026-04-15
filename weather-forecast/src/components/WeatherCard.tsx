@@ -1,5 +1,5 @@
 import React from "react";
-import { WeatherDay } from "../types/weather";
+import type { WeatherDay } from "../types/weather";
 import WeatherIcon from "./WeatherIcon";
 import styles from "./WeatherCard.module.css";
 

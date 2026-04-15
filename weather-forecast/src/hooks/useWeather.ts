@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { WeatherDay, WeatherError } from "../types/weather";
+import type { WeatherDay, WeatherError } from "../types/weather";
 import { weatherService } from "../services/weatherService";
 
 export const useWeather = (useMock: boolean = true) => {
