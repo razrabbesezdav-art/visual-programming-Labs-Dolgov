@@ -1,0 +1,96 @@
+.card {
+  width: 200px;
+  padding: 20px 15px;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  color: #1a1a2e;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.date {
+  margin-bottom: 10px;
+}
+
+.dayName {
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.fullDate {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+.temp {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 10px 0 5px;
+}
+
+.description {
+  text-transform: capitalize;
+  margin: 8px 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.details {
+  margin-top: 15px;
+  font-size: 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 10px;
+}
+
+.label {
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.wind, .humidity {
+  margin: 5px 0;
+}
+
+/* Фоны для разных погодных условий */
+.thunderstorm {
+  background: linear-gradient(135deg, #5a5a7a 0%, #3a3a5a 100%);
+  color: #f0f0f0;
+}
+
+.rain {
+  background: linear-gradient(135deg, #6b8cae 0%, #4a6a8a 100%);
+  color: #ffffff;
+}
+
+.snow {
+  background: linear-gradient(135deg, #b0d0e8 0%, #90b0c8 100%);
+  color: #1a1a2e;
+}
+
+.fog {
+  background: linear-gradient(135deg, #c0c0c0 0%, #a0a0a0 100%);
+  color: #1a1a2e;
+}
+
+.clear {
+  background: linear-gradient(135deg, #f7d06e 0%, #f0c040 100%);
+  color: #1a1a2e;
+}
+
+.clouds {
+  background: linear-gradient(135deg, #b0b0b0 0%, #909090 100%);
+  color: #1a1a2e;
+}
+
+.default {
+  background: linear-gradient(135deg, #87CEEB 0%, #67aecb 100%);
+  color: #1a1a2e;
+}
