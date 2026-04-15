@@ -1,4 +1,4 @@
-import { WeatherResponse, WeatherError } from "../types/weather";
+import type{ WeatherResponse, WeatherError } from "../types/weather";
 import { mockWeatherData } from "../mocks/weatherMock";
 
 const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY || "";
