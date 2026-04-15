@@ -1,0 +1,114 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.header {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.title {
+  margin: 0;
+  font-size: 28px;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.weatherEmoji {
+  font-size: 32px;
+}
+
+.controls {
+  display: flex;
+  gap: 15px;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggleButton {
+  background: #3498db;
+  color: white;
+}
+
+.toggleButton:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+.refreshButton {
+  background: #2ecc71;
+  color: white;
+}
+
+.refreshButton:hover {
+  background: #27ae60;
+  transform: translateY(-2px);
+}
+
+.refreshButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.main {
+  flex: 1;
+  padding: 30px 20px;
+}
+
+.error {
+  background: #e74c3c;
+  color: white;
+  padding: 15px 30px;
+  margin: 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.retryButton {
+  background: white;
+  color: #e74c3c;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.retryButton:hover {
+  background: #f0f0f0;
+}
+
+.footer {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: auto;
+}
+
+.mockInfo {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 5px;
+}
