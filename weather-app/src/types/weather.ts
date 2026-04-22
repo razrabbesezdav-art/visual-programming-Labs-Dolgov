@@ -3,6 +3,8 @@ export interface WeatherDay {
   temp: number;
   conditions: string;
   icon: string;
+
+  aqi?: number;
 }
 
 export interface WeatherResponse {
