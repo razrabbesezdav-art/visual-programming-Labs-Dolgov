@@ -1,5 +1,5 @@
-import type { useEffect, useState } from "react";
-import type { getWeather } from "./services/weatherApi";
+import { useEffect, useState } from "react";
+import { getWeather } from "./services/weatherApi";
 import type { WeatherResponse } from "./types/weather";
 import Search from "./components/Search";
 import ForecastList from "./components/ForecastList";
