@@ -7,8 +7,8 @@ interface Props {
 
 export default function ForecastList({ days }: Props) {
   return (
-    <div>
-      {days.map((day) => (
+    <div className="forecast">
+      {days.slice(0, 7).map((day) => (
         <WeatherCard key={day.datetime} day={day} />
       ))}
     </div>
