@@ -1,11 +1,8 @@
-/* 🔹 общий фон */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #6b7280;
 }
 
-/* 🔹 главный контейнер */
 .app {
   text-align: center;
   width: 100%;
@@ -13,14 +10,33 @@ body {
   margin: 0 auto;
   padding: 20px 40px;
   box-sizing: border-box;
+
+  background-color: #6b7280;
+  min-height: 100vh;
+  color: black;
 }
 
-/* 🔹 заголовок */
-h1 {
-  margin-bottom: 20px;
+.app.dark {
+  background-color: #0f172a;
+  color: white;
 }
 
-/* 🔹 поиск */
+.app.dark h1,
+.app.dark h2,
+.app.dark h3 {
+  color: #f9fafb;
+}
+
+.theme-toggle {
+  margin-bottom: 15px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #3b82f6;
+  color: white;
+}
+
 .search {
   display: flex;
   justify-content: center;
@@ -46,23 +62,15 @@ h1 {
   color: white;
 }
 
-.search button:hover {
-  background-color: #2563eb;
-}
-
-/* 🔹 контейнер дней (БЕЗ СКРОЛЛА) */
 .weather-grid {
   display: flex;
   justify-content: center;
   gap: 16px;
-  flex-wrap: wrap; /* перенос если не влезает */
-  width: 100%;
+  flex-wrap: wrap;
 }
 
-/* 🔹 карточка дня */
 .card {
   width: 130px;
-  background: white;
   padding: 15px;
   border-radius: 16px;
   cursor: pointer;
@@ -71,25 +79,28 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  background: white;
+}
+
+.app.dark .card {
+  background: #1e293b;
+  color: white;
 }
 
 .card:hover {
   transform: translateY(-5px);
 }
 
-/* выбранный день */
 .card.active {
   border: 3px solid #3b82f6;
   transform: scale(1.05);
 }
 
-/* 🔹 большая карточка */
 .details-card {
   margin-top: 30px;
-  background: linear-gradient(135deg, #4f6df5, #6b8cff);
   border-radius: 20px;
   padding: 30px;
-  color: white;
 
   display: flex;
   justify-content: space-between;
@@ -102,9 +113,15 @@ h1 {
 
   box-sizing: border-box;
   gap: 20px;
+
+  background: linear-gradient(135deg, #4f6df5, #6b8cff);
+  color: white;
 }
 
-/* левая часть */
+.app.dark .details-card {
+  background: linear-gradient(135deg, #020617, #1e293b);
+}
+
 .details-left {
   text-align: left;
 }
@@ -113,7 +130,6 @@ h1 {
   margin: 0 0 10px;
 }
 
-/* температура */
 .big-temp {
   font-size: 48px;
   font-weight: bold;
@@ -125,17 +141,14 @@ h1 {
   opacity: 0.9;
 }
 
-/* правая часть */
 .details-right {
   text-align: right;
 }
 
-/* иконка */
 .big-icon {
   font-size: 60px;
 }
 
-/* воздух */
 .air-info {
   margin-top: 10px;
 }
